@@ -44,11 +44,24 @@ class Dictionary:
         self.length += 1
 
     def __getitem__(self, key: Any) -> Any:
+        # index = hash(key) % self.capacity
+
+        # if required_key is None or key != required_key[0]:
+        #     raise KeyError
+        # return required_key[2]
         index = hash(key) % self.capacity
-        required_key = self.hash_table[index]
-        if required_key is None or key != required_key[0]:
-            raise KeyError(f"'{key}' not found in myDictionary")
-        return required_key
+        start_index = index
+
+        while True:
+            required_key = self.hash_table[start_index]
+
+            if required_key is None:
+                raise KeyError
+
+            if required_key[0] == key:
+                return required_key[2]
+
+            start_index = (start_index + 1) % self.capacity
 
     def __len__(self) -> int:
         return self.length
