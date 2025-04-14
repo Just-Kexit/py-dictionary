@@ -46,7 +46,7 @@ class Dictionary:
     def __getitem__(self, key: Any) -> Any:
         index = hash(key) % self.capacity
         required_key = self.hash_table[index]
-        if required_key is None or key not in required_key[0]:
+        if required_key is None or key != required_key[0]:
             raise KeyError(f"'{key}' not found in myDictionary")
         return required_key
 
