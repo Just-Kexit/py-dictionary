@@ -44,11 +44,7 @@ class Dictionary:
         self.length += 1
 
     def __getitem__(self, key: Any) -> Any:
-        # index = hash(key) % self.capacity
 
-        # if required_key is None or key != required_key[0]:
-        #     raise KeyError
-        # return required_key[2]
         index = hash(key) % self.capacity
         start_index = index
 
